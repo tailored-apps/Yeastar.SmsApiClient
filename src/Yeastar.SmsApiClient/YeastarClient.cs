@@ -30,30 +30,38 @@ namespace Yeastar.SmsApiClient
                 {
                     using (var reader = new StreamReader(stream, Encoding.ASCII, leaveOpen: true))
                     {
-                        StringBuilder stringBuilder = new StringBuilder();
-                        string text;
-                        while (!string.IsNullOrEmpty((text = reader.ReadLine())))
+                        reader.BaseStream.ReadTimeout = 2000;
+                        try
                         {
-                            stringBuilder.AppendLine(text);
-                        }
-                        var message = stringBuilder.ToString();
-
-                        if (System.Text.RegularExpressions.Regex.IsMatch(message, SMS_SENT_REGEX))
-                        {
-                            var match = System.Text.RegularExpressions.Regex.Match(message, SMS_SENT_REGEX);
-                            if (SmsUpdateEvent != null)
+                            StringBuilder stringBuilder = new StringBuilder();
+                            string text;
+                            while (!string.IsNullOrEmpty((text = reader.ReadLine())))
                             {
-                                SmsUpdateEvent(this, new UpdateSMSSendEventArgs(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value, int.Parse(match.Groups[4].Value)));
+                                stringBuilder.AppendLine(text);
+                            }
+                            var message = stringBuilder.ToString();
+
+                            if (System.Text.RegularExpressions.Regex.IsMatch(message, SMS_SENT_REGEX))
+                            {
+                                var match = System.Text.RegularExpressions.Regex.Match(message, SMS_SENT_REGEX);
+                                if (SmsUpdateEvent != null)
+                                {
+                                    SmsUpdateEvent(this, new UpdateSMSSendEventArgs(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value, int.Parse(match.Groups[4].Value)));
+                                }
+                            }
+                            else if (System.Text.RegularExpressions.Regex.IsMatch(message, SMS_RECEIVED_REGEX))
+                            {
+
+                                var match = System.Text.RegularExpressions.Regex.Match(message, SMS_RECEIVED_REGEX);
+                                if (SmsReceivedEvent != null)
+                                {
+                                    SmsReceivedEvent(this, new ReceivedSMSEventArgs(match.Groups[1].Value, match.Groups[2].Value, int.Parse(match.Groups[3].Value), match.Groups[4].Value, DateTime.Parse(match.Groups[5].Value), int.Parse(match.Groups[6].Value), int.Parse(match.Groups[7].Value), match.Groups[8].Value, WebUtility.UrlDecode(match.Groups[9].Value)));
+                                }
                             }
                         }
-                        else if (System.Text.RegularExpressions.Regex.IsMatch(message, SMS_RECEIVED_REGEX))
+                        catch (System.IO.IOException ex)
                         {
 
-                            var match = System.Text.RegularExpressions.Regex.Match(message, SMS_RECEIVED_REGEX);
-                            if (SmsReceivedEvent != null)
-                            {
-                                SmsReceivedEvent(this, new ReceivedSMSEventArgs(match.Groups[1].Value, match.Groups[2].Value, int.Parse(match.Groups[3].Value), match.Groups[4].Value, DateTime.Parse(match.Groups[5].Value), int.Parse(match.Groups[6].Value), int.Parse(match.Groups[7].Value), match.Groups[8].Value, WebUtility.UrlDecode(match.Groups[9].Value)));
-                            }
                         }
                     }
                 }

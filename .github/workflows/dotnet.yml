@@ -14,23 +14,14 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 5.0.x
     - name: Install dot net tools
       run: npm install dotnettools
-    - name: Bump version
-      run: node ./node_modules/dotnettools/bin/dnt.js bump-versions patch
-    - name: Add & Commit
-      uses: EndBug/add-and-commit@v4.0.1
-      with:
-        message: Version update
-    - name: Install dependencies
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
+  
     - name: Restore dependencies
       run: dotnet restore ./Yeastar.SmsApiClient.sln
     - name: Build
-      run: dotnet build ./Yeastar.SmsApiClient.sln --configuration Release --no-restore
+      run: dotnet build ./Yeastar.SmsApiClient.sln --configuration Release -p:Version=1.0.0.1.${{ github.run_number }} --no-restore
     - name: Publish NuGet
       uses: rohith/publish-nuget@v2.2.1
       with:

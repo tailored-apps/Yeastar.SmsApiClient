@@ -17,10 +17,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: DotNet Bump Versions
-      uses: SiqiLu/dotnet-bump-version@1.0.2
-      with:
-        key: "**/*.csproj"       
     - name: Restore dependencies
       run: dotnet restore ./Yeastar.SmsApiClient.sln
     - name: Build

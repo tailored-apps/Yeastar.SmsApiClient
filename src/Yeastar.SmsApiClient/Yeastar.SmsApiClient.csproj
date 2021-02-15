@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Company>Tailored Apps.</Company>
+    <Authors>Tailored Apps.</Authors>
+    <Description>a simple Api client for Yeastar SMS Gate</Description>
+    <Copyright>Tailored Apps.</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://tailoredapps.pl</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>

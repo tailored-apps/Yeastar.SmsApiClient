@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore ./Yeastar.SmsApiClient.sln
     - name: Build
       run: dotnet build ./Yeastar.SmsApiClient.sln --configuration Release -p:Version=1.0.0.${{ github.run_number }} --no-restore
-    - name: Build
+    - name: publish
       run: dotnet publish ./Yeastar.SmsApiClient.sln --configuration Release -p:Version=1.0.0.${{ github.run_number }} --no-restore
     - name: Publish NuGet
-      run: dotnet nuget push "./src/Yeastar.SmsApiClient/bin/Release/net5.0/publish/*.nupkg" -k ${{ secrets.YeastarNugetKey }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push "./src/Yeastar.SmsApiClient/bin/Release/*.nupkg" -k ${{ secrets.YeastarNugetKey }} -s https://api.nuget.org/v3/index.json

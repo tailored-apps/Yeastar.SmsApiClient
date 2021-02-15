@@ -15,8 +15,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Install dot net tools
-      run: npm install dotnettools
     - name: Bump version
       run: node ./node_modules/dotnettools/bin/dnt.js bump-versions patch
     - name: Add & Commit

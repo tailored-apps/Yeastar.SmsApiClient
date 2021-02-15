@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Company>Tailored Apps.</Company>
@@ -8,6 +7,6 @@
     <Copyright>Tailored Apps.</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://tailoredapps.pl</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
-
 </Project>

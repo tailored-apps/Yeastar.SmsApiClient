@@ -21,7 +21,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./Yeastar.SmsApiClient.sln
     - name: Build
-      run: dotnet build ./Yeastar.SmsApiClient.sln --configuration Release -p:Version=1.0.0.1.${{ github.run_number }} --no-restore
+      run: dotnet build ./Yeastar.SmsApiClient.sln --configuration Release -p:Version=1.0.0.${{ github.run_number }} --no-restore
     - name: Publish NuGet
       uses: rohith/publish-nuget@v2.2.1
       with:

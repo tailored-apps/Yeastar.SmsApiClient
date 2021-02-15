@@ -7,6 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{93554318-BC6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yeastar.SmsApiClient", "src\Yeastar.SmsApiClient\Yeastar.SmsApiClient.csproj", "{E48FDE67-CD66-4799-B45A-DBF52905AE36}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{42F273E4-1ED2-4A8D-BB99-C876A8FA0653}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{8C4C97B2-F5C9-412E-A4D9-AB22E73B957B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +30,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E48FDE67-CD66-4799-B45A-DBF52905AE36} = {93554318-BC68-44DD-815E-2B9C2718B0E8}
+		{8C4C97B2-F5C9-412E-A4D9-AB22E73B957B} = {42F273E4-1ED2-4A8D-BB99-C876A8FA0653}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {644544EB-96EC-4D18-ABD2-8C58F1E0EAD5}

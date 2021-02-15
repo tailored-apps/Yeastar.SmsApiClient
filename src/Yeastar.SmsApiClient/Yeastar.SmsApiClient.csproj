@@ -3,7 +3,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <Company>Tailored Apps.</Company>
     <Authors>Tailored Apps.</Authors>
-    <Description>a simple Api client for Yeastar SMS Gate</Description>
+    <Description>a simple Api client for Yeastar SMS Gate, public repository is here https://github.com/tailored-apps/Yeastar.SmsApiClient</Description>
     <Copyright>Tailored Apps.</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://tailoredapps.pl</PackageProjectUrl>

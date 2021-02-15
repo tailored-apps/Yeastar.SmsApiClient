@@ -17,12 +17,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Bump version
-      run: node ./node_modules/dotnettools/bin/dnt.js bump-versions patch
-    - name: Add & Commit
-      uses: EndBug/add-and-commit@v4.0.1
+    - name: DotNet Bump Versions
+      uses: SiqiLu/dotnet-bump-version@1.0.2
       with:
-        message: Version update
+        key: "**/*.csproj"       
     - name: Restore dependencies
       run: dotnet restore ./Yeastar.SmsApiClient.sln
     - name: Build

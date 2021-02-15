@@ -1,0 +1,36 @@
+name: Yeastar.SmsApiClient master build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Install dot net tools
+      run: npm install dotnettools
+    - name: Bump version
+      run: node ./node_modules/dotnettools/bin/dnt.js bump-versions patch
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v4.0.1
+      with:
+        message: Version update
+    - name: Restore dependencies
+      run: dotnet restore ./Yeastar.SmsApiClient.sln
+    - name: Build
+      run: dotnet build ./Yeastar.SmsApiClient.sln --configuration Release --no-restore
+    - name: Publish NuGet
+      uses: rohith/publish-nuget@v2.2.1
+      with:
+        PROJECT_FILE_PATH: ./src/Yeastar.SmsApiClient/Yeastar.SmsApiClient.csproj
+        NUGET_KEY: ${{ secrets.YeastarNugetKey }}
